@@ -72,3 +72,7 @@ lemonlens/analytics.py  Filters and aggregations
 lemonlens/charts.py     Plotly figures
 lemonlens/mock.py       Offline mock client     lemonlens/demo_data.py  Synthetic data
 ```
+
+## License
+
+MIT. See [LICENSE](LICENSE).
