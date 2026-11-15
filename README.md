@@ -35,13 +35,13 @@ NHTSA API ──► complaints table ──► Embed 5 Pro ──► vector inde
 ```bash
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env        # then paste your Cohere key into .env
+cp .env.example .env        # then replace your-cohere-api-key-here with your Cohere key
 streamlit run app.py
 ```
 
 Enter vehicles in the sidebar, one per line as `MAKE, MODEL, YEARS` (for example `FORD, ESCAPE, 2020-2022`), and press **Load and index**. NHTSA data needs no key. Responses and embeddings are cached under `data/cache/`.
 
-Without a Cohere key the app still runs: models are replaced by an offline mock and a synthetic dataset loads, both clearly labelled, so you can click through the interface.
+Get a key at [dashboard.cohere.com/api-keys](https://dashboard.cohere.com/api-keys). Without one (or with the placeholder left in `.env`) the app still runs: models are replaced by an offline mock and a synthetic dataset loads, both clearly labelled, so you can click through the interface.
 
 ## Settings
 
@@ -53,7 +53,7 @@ Environment variables (or `.env`): `COHERE_API_KEY`, `LEMONLENS_EMBED_DIM` (256�
 pytest -q
 ```
 
-The 14 tests cover the v2 request shapes, retries, NHTSA normalisation, aggregations, retrieval, theme discovery, and the agent loop (tool dispatch, message shapes, citations, step limit). They run offline against the mock client.
+The 15 tests cover the v2 request shapes, retries, NHTSA normalisation, aggregations, retrieval, theme discovery, and the agent loop (tool dispatch, message shapes, citations, step limit). They run offline against the mock client.
 
 ## Reading the numbers
 

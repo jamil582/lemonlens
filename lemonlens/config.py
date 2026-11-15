@@ -44,5 +44,10 @@ MAX_AGENT_STEPS = int(os.environ.get("LEMONLENS_MAX_STEPS", "6"))
 MAX_COMPLAINTS = int(os.environ.get("LEMONLENS_MAX_COMPLAINTS", "4000"))
 
 
+PLACEHOLDER_KEY = "your-cohere-api-key-here"  # the value shipped in .env.example
+
+
 def api_key() -> str | None:
-    return os.environ.get("COHERE_API_KEY") or os.environ.get("CO_API_KEY") or None
+    """The configured Cohere key, or None if unset or still the placeholder."""
+    key = (os.environ.get("COHERE_API_KEY") or os.environ.get("CO_API_KEY") or "").strip()
+    return None if not key or key == PLACEHOLDER_KEY else key

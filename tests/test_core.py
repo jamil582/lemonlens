@@ -216,3 +216,11 @@ def test_agent_stops_after_max_steps(data, monkeypatch):
     co = ScriptedCo([loop, loop, {"message": {"role": "assistant", "content": [{"type": "text", "text": "done"}]}}])
     result = Analyst(co, df, index, recalls).ask("q")
     assert result.text == "done" and len(result.trace) == 2 and co.seen[-1]["tool_choice"] == "NONE"
+
+
+def test_placeholder_key_is_ignored(monkeypatch):
+    monkeypatch.delenv("CO_API_KEY", raising=False)
+    monkeypatch.setenv("COHERE_API_KEY", config.PLACEHOLDER_KEY)
+    assert config.api_key() is None
+    monkeypatch.setenv("COHERE_API_KEY", " real-key ")
+    assert config.api_key() == "real-key"
